@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" >
+    <div class="row" >
+        <div class="card box-shadow m-2 form-wrap" >
+            <div class="card-header text-center">
+                <h3>Currency exchanger </h3>
+            </div>
+            <form id="form" class="p-3" action="" method="post" >
+                {% csrf_token %}
+                {% for f in form %}
+                <p><label for="{{ f.id_for_label }}" >{{f.label}}: </label>{{ f }} </p>
+                <div class="form-error">{{ f.errors }}</div>
+                {% endfor %}
+                {% if converted_amount %}
+                <p> {{ converted_amount }}</p>
+                {% endif %}
+                
+            <div class="submit-btn mt-4">
+                <button type="submit" class="btn btn-outline-primary">Convert</button>
+                <a class="btn btn-primary" href="https://www.easymarkets.com/syc/learn-centre/discover-trading/currency-acronyms-and-abbreviations/" target="popup" onclick="window.open('https://www.easymarkets.com/syc/learn-centre/discover-trading/currency-acronyms-and-abbreviations/','name','width=600,height=400')" role="button">Currency abbreviations</a>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
